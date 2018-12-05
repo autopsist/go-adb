@@ -3,8 +3,8 @@ package wire
 import (
 	"testing"
 
-	"github.com/yosemite-open/go-adb/internal/errors"
 	"github.com/stretchr/testify/assert"
+	"github.com/yosemite-open/go-adb/internal/errors"
 )
 
 func TestAdbServerError_NoRequest(t *testing.T) {

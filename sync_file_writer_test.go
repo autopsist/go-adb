@@ -8,8 +8,8 @@ import (
 	"encoding/binary"
 	"strings"
 
-	"github.com/yosemite-open/go-adb/wire"
 	"github.com/stretchr/testify/assert"
+	"github.com/yosemite-open/go-adb/wire"
 )
 
 func TestFileWriterWriteSingleChunk(t *testing.T) {
