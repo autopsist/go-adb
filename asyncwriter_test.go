@@ -30,5 +30,5 @@ Loop:
 			break Loop
 		}
 	}
-	log.Printf("copy error:", sync.Err())
+	log.Printf("copy error: %s", sync.Err())
 }

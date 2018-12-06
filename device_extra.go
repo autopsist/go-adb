@@ -13,7 +13,6 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/franela/goreq"
 	retryablehttp "github.com/hashicorp/go-retryablehttp"
 )
 
@@ -220,11 +219,6 @@ func (c *Device) DoSyncLocalFile(dst string, src string, perms os.FileMode) (aw 
 func (c *Device) DoSyncHTTPFile(dst string, srcUrl string, perms os.FileMode) (aw *AsyncWriter, err error) {
 	res, err := retryablehttp.Get(srcUrl)
 
-	// res, err := goreq.Request{
-	// 	Uri:             srcUrl,
-	// 	RedirectHeaders: true,
-	// 	MaxRedirects:    10,
-	// }.Do()
 	if err != nil {
 		return
 	}
@@ -272,18 +266,14 @@ func (c *Device) WriteToFile(path string, rd io.Reader, perms os.FileMode) (writ
 
 // WriteHttpToFile download http resource to device
 func (c *Device) WriteHttpToFile(path string, urlStr string, perms os.FileMode) (written int64, err error) {
-	resp, err := goreq.Request{
-		Uri:             urlStr,
-		RedirectHeaders: true,
-		MaxRedirects:    10,
-	}.Do()
+	res, err := retryablehttp.Get(urlStr)
 	if err != nil {
 		return
 	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		err = fmt.Errorf("http download <%s> status %v", urlStr, resp.Status)
+	defer res.Body.Close()
+	if res.StatusCode != http.StatusOK {
+		err = fmt.Errorf("http download <%s> status %v", urlStr, res.Status)
 		return
 	}
-	return c.WriteToFile(path, resp.Body, perms)
+	return c.WriteToFile(path, res.Body, perms)
 }

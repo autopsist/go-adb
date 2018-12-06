@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/yosemite-open/go-adb/wire"
 	"github.com/stretchr/testify/assert"
+	"github.com/yosemite-open/go-adb/wire"
 )
 
 func TestReadNextChunk(t *testing.T) {
