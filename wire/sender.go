@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/yosemite-open/go-adb/internal/errors"
+	"github.com/autopsist/go-adb/internal/errors"
 )
 
 // Sender sends messages to the server.

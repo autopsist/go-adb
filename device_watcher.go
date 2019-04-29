@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/yosemite-open/go-adb/internal/errors"
-	"github.com/yosemite-open/go-adb/wire"
+	"github.com/autopsist/go-adb/internal/errors"
+	"github.com/autopsist/go-adb/wire"
 )
 
 /*
